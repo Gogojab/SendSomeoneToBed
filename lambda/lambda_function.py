@@ -4,6 +4,7 @@ SendSomeoneToBed
 """
 
 from __future__ import print_function
+import random
 
 
 # --------------- Helpers that build all of the responses ----------------------
@@ -74,8 +75,15 @@ def handle_help_request():
 def send_someone_to_bed(intent, session):
     session_attributes = {}
     card_title = "Dispatched: " 
-    speech_output = "Time for bed, "
 
+    random_number = random.random()
+
+    if random_number > 0.5:
+        speech_output = "Time for bed, "
+    else:
+        speech_output = "Just 5 more minutes, "
+
+    print("speech_output is: " + speech_output)
     print("intent is: " + str(intent))
 
     if "beddee" in intent["slots"]:
