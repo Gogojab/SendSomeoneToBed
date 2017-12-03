@@ -46,7 +46,7 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "What is their name?"
+    speech_output = "OK, what is the name of the person to send to bed?"
     
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
@@ -55,7 +55,7 @@ def get_welcome_response():
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "Cheerio!" 
+    speech_output = "Good night!" 
     session_attributes = {}
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
@@ -71,25 +71,25 @@ def handle_help_request():
         card_title, speech_output, None, should_end_session))
 
 
-def meet_my_friend(intent, session):
+def send_someone_to_bed(intent, session):
     session_attributes = {}
     card_title = "Dispatched: " 
     speech_output = "Time for bed, "
 
     print("intent is: " + str(intent))
 
-    if "helloee" in intent["slots"]:
+    if "beddee" in intent["slots"]:
 
-        if "value" in intent["slots"]["helloee"]:
-            helloee = intent["slots"]["helloee"]["value"]
-            print("helloee =" + helloee)
-	    card_title = card_title + helloee
-	    speech_output = speech_output + helloee
+        if "value" in intent["slots"]["beddee"]:
+            beddee = intent["slots"]["beddee"]["value"]
+            print("beddee =" + beddee)
+	    card_title = card_title + beddee
+	    speech_output = speech_output + beddee
         else:
-            print("no helloee value")
+            print("no beddee value")
             return(handle_help_request())
     else:
-        print("no helloee")
+        print("no beddee")
         return(handle_help_request())
    
     
@@ -129,7 +129,7 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     if intent_name == "SendSomeoneToBed":
-	return meet_my_friend(intent, session)
+	return send_someone_to_bed(intent, session)
     elif intent_name == "AMAZON.CancelIntent":
         return handle_session_end_request()
     elif intent_name == "AMAZON.StopIntent":
@@ -165,8 +165,8 @@ def lambda_handler(event, context):
     prevent someone else from configuring a skill that sends requests to this
     function.
     """
-   iif (event['session']['application']['applicationId'] !=
-            "amzn1.ask.skill.b3bf10c3-db55-412c-a7ce-0490a9b4e645"):
+    if (event['session']['application']['applicationId'] !=
+            "amzn1.ask.skill.dd227f04-22dc-4c19-9aa5-e815af9130e4"):
         raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
