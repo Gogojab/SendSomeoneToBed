@@ -8,8 +8,8 @@ import random
 
 # 
 response_options = [
-	"option 1 {name}",
-	"option 2 {name}"
+	"Good night, {name}, sweet dreams",
+	"Time for bed, {name}",
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
@@ -80,11 +80,10 @@ def handle_help_request():
 def get_beddee_response():
     speech_output = "Time for bed, {name}"
 
-    random_number = random.random()
-
     print(str(response_options))
 
-    speech_output = "Good night, {name}, sweet dreams"
+    speech_output = random.choice(response_options)
+    #speech_output = "Good night, {name}, sweet dreams"
     #if random_number > 0.5:
     #    speech_output = "Time for bed, "
     #else:
