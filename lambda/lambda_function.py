@@ -6,6 +6,11 @@ SendSomeoneToBed
 from __future__ import print_function
 import random
 
+# 
+response_options = [
+	"option 1 {name}",
+	"option 2 {name}"
+	]
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -77,6 +82,9 @@ def get_beddee_response():
 
     random_number = random.random()
 
+    print(str(response_options))
+
+    speech_output = "Good night, {name}, sweet dreams"
     #if random_number > 0.5:
     #    speech_output = "Time for bed, "
     #else:
