@@ -72,16 +72,24 @@ def handle_help_request():
         card_title, speech_output, None, should_end_session))
 
 
+def get_beddee_response():
+    speech_output = "Time for bed, {name}"
+
+    random_number = random.random()
+
+    #if random_number > 0.5:
+    #    speech_output = "Time for bed, "
+    #else:
+    #    speech_output = "You can have 5 more minutes, "
+
+    return speech_output
+
+
 def send_someone_to_bed(intent, session):
     session_attributes = {}
     card_title = "Dispatched: " 
 
-    random_number = random.random()
-
-    if random_number > 0.5:
-        speech_output = "Time for bed, "
-    else:
-        speech_output = "Just 5 more minutes, "
+    speech_output = get_beddee_response()
 
     print("speech_output is: " + speech_output)
     print("intent is: " + str(intent))
@@ -91,8 +99,6 @@ def send_someone_to_bed(intent, session):
         if "value" in intent["slots"]["beddee"]:
             beddee = intent["slots"]["beddee"]["value"]
             print("beddee =" + beddee)
-	    card_title = card_title + beddee
-	    speech_output = speech_output + beddee
         else:
             print("no beddee value")
             return(handle_help_request())
@@ -100,6 +106,8 @@ def send_someone_to_bed(intent, session):
         print("no beddee")
         return(handle_help_request())
    
+    card_title = card_title + beddee
+    speech_output = speech_output.format(name = beddee)
     
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
