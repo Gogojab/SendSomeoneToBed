@@ -77,6 +77,18 @@ def handle_help_request():
         card_title, speech_output, None, should_end_session))
 
 
+def list_all_bed_options():
+    print("ListAllBedOptions")
+
+    card_title = "ListAllBedOptions"
+    speech_output = "Bed options are as follows: "
+    session_attributes = {}
+    should_end_session =  True
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, None, should_end_session))
+
+
+
 def get_beddee_response():
     speech_output = "Time for bed, {name}"
 
@@ -159,6 +171,8 @@ def on_intent(intent_request, session):
         return handle_session_end_request()
     elif intent_name == "AMAZON.HelpIntent":
         return handle_help_request()
+    elif intent_name == "ListAllBedOptions":
+        return list_all_bed_options()
     else:
         print("invalid intent name=" + intent_name)
         raise ValueError("Invalid intent")
