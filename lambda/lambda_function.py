@@ -10,6 +10,7 @@ import random
 response_options = [
 	"Good night, {name}, sweet dreams",
 	"Time for bed, {name}",
+        "That's it.  I've had enough.  Everyone has to go to bed",
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
@@ -82,6 +83,12 @@ def list_all_bed_options():
 
     card_title = "ListAllBedOptions"
     speech_output = "Bed options are as follows: "
+
+    for x in response_options:
+        speech_output += x + ". break. "
+
+    print(speech_output)
+
     session_attributes = {}
     should_end_session =  True
     return build_response(session_attributes, build_speechlet_response(
