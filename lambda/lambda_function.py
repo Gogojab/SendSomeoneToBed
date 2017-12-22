@@ -11,6 +11,7 @@ response_options = [
 	"Good night, {name}, sweet dreams",
 	"Time for bed, {name}",
         "That's it.  I've had enough.  Everyone has to go to bed. NOW!",
+        "<amazon:effect name='whispered'> Let's all be quiet so {name} can go to sleep. </amazon:effect>",
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
