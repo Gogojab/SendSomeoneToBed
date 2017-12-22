@@ -10,7 +10,7 @@ import random
 response_options = [
 	"Good night, {name}, sweet dreams",
 	"Time for bed, {name}",
-        "That's it.  I've had enough.  Everyone has to go to bed. NOW!",
+        "That's it.  I've had enough.  Everyone has to go to bed. <emphasis level='strong'>NOW!</emphasis>",
         "<amazon:effect name='whispered'> Let's all be quiet so {name} can go to sleep. </amazon:effect>",
 	]
 
