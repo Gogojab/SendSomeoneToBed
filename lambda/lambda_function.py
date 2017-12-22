@@ -10,16 +10,19 @@ import random
 response_options = [
 	"Good night, {name}, sweet dreams",
 	"Time for bed, {name}",
-        "That's it.  I've had enough.  Everyone has to go to bed",
+        "That's it.  I've had enough.  Everyone has to go to bed. NOW!",
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
+        #'outputSpeech': {
+        #    'type': 'PlainText',
+        #    'text': output
         'outputSpeech': {
-            'type': 'PlainText',
-            'text': output
+            'type': 'SSML',
+            'ssml': "<speak>" + output + "</speak>"
         },
         'card': {
             'type': 'Simple',
