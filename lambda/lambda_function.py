@@ -12,6 +12,20 @@ response_options = [
 	"Time for bed, {name}",
         "That's it.  I've had enough.  Everyone has to go to bed. <emphasis level='strong'>NOW!</emphasis>",
         "<amazon:effect name='whispered'> Let's all be quiet so {name} can go to sleep. </amazon:effect>",
+        "OK, {name}, up the wooden hill to bedfordshire.",
+        "OK, {name}, you can have 5 more minutes",
+        "Hey, {name}, come to bed.",
+        "Bedtime on the count of 10. <prosody rate='x-slow'>1, 2, 3, 4, 5,</prosody><prosody rate='x-fast'>6 7 8 9 10</prosody>",
+        "For the last time, {name}, I said go to <say-as interpret-as='expletive'>bleep</say-as> bed.",
+        "{name}, <say-as interpret-as='spell-out'>BED</say-as>, immediately.",
+        "<say-as interpret-as='interjection'>aw man</say-as>time for bed, {name}",
+        "<say-as interpret-as='interjection'>good golly</say-as> it is bed for {name}",
+        "<say-as interpret-as='interjection'>hip hip hooray</say-as>it is bed time!",
+        "bed time, {name}. <break time='3s'/>, <say-as interpret-as='interjection'>just kidding</say-as>",
+        "<say-as interpret-as='interjection'>oh my giddy aunt</say-as>, everyone called {name}, go to bed",
+        "<say-as interpret-as='interjection'>spoiler alert</say-as>, it is bed time for {name}",
+        "<say-as interpret-as='interjection'>tick tock</say-as>, bed isn't going to go to itself",
+
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
