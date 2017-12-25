@@ -18,7 +18,7 @@ response_options = [
         "Bedtime on the count of 10. <prosody rate='x-slow'>1, 2, 3, 4, 5,</prosody><prosody rate='x-fast'>6 7 8 9 10</prosody>",
         "For the last time, {name}, I said go to <say-as interpret-as='expletive'>bleep</say-as> bed.",
         "{name}, <say-as interpret-as='spell-out'>BED</say-as>, immediately.",
-        "<say-as interpret-as='interjection'>aw man</say-as>time for bed, {name}",
+        "<say-as interpret-as='interjection'>aw man</say-as>, time for bed, {name}",
         "<say-as interpret-as='interjection'>good golly</say-as> it is bed for {name}",
         "<say-as interpret-as='interjection'>hip hip hooray</say-as>it is bed time!",
         "bed time, {name}. <break time='3s'/>, <say-as interpret-as='interjection'>just kidding</say-as>",
@@ -29,12 +29,32 @@ response_options = [
 	]
 
 # --------------- Helpers that build all of the responses ----------------------
+def clean_text(text):
+    s_list = list(text)
+    i = 0
+    j = 0
+	
+    while i < len(s_list):
+        # iterate until a left-angle bracket is found
+        if s_list[i] == '<':
+            while s_list[i] != '>':
+                # pop everything from the the left-angle bracket until the right-angle bracket
+                s_list.pop(i)
+				
+            # pops the right-angle bracket, too
+            s_list.pop(i)
+        else:
+            i=i+1
+			
+    # convert the list back into text
+    join_char=''
+    return join_char.join(s_list)
+
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
+    clean_output = clean_text(output)
+    print(clean_output)
     return {
-        #'outputSpeech': {
-        #    'type': 'PlainText',
-        #    'text': output
         'outputSpeech': {
             'type': 'SSML',
             'ssml': "<speak>" + output + "</speak>"
@@ -42,7 +62,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         'card': {
             'type': 'Simple',
             'title': "SendSomeoneToBed - " + title,
-            'content': "SendSomeoneToBed - " + output
+            'content': "SendSomeoneToBed - " + clean_output
         },
         'reprompt': {
             'outputSpeech': {
@@ -120,11 +140,6 @@ def get_beddee_response():
     print(str(response_options))
 
     speech_output = random.choice(response_options)
-    #speech_output = "Good night, {name}, sweet dreams"
-    #if random_number > 0.5:
-    #    speech_output = "Time for bed, "
-    #else:
-    #    speech_output = "You can have 5 more minutes, "
 
     return speech_output
 
